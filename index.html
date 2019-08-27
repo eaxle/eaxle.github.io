@@ -42,9 +42,9 @@ d3.csv("dcu0000_20190822.csv", function(error, data) {
   if (error) throw error;
 
   // format the data
-  data.forEach(function(d) {
-    d.ph_value = +d.ph_value;
-  });
+//  data.forEach(function(d) {
+  //  d.ph_value = +d.ph_value;
+  //});
 
   // Scale the range of the data in the domains
   x.domain(data.map(function(d) { return d.tank_id; }));
