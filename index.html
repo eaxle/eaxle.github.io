@@ -13,7 +13,7 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
+    width = 100%,
     height = 500 - margin.top - margin.bottom;
 
 // set the ranges
@@ -43,7 +43,7 @@ d3.csv("dcu0000_20190822.csv", function(error, data) {
   });
 
   // Scale the range of the data in the domains
-  x.domain(data.map(function(d) { return d.date_and_time; }));
+  x.domain(data.map(function(d) { return d.tank_id; }));
   y.domain([0, d3.max(data, function(d) { return d.ph_value; })]);
 
   // append the rectangles for the bar chart
@@ -51,7 +51,7 @@ d3.csv("dcu0000_20190822.csv", function(error, data) {
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.date_and_time); })
+      .attr("x", function(d) { return x(d.tank_id); })
       .attr("width", x.bandwidth())
       .attr("y", function(d) { return y(d.ph_value); })
       .attr("height", function(d) { return height - y(d.ph_value); });
