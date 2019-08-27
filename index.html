@@ -39,7 +39,7 @@ d3.csv("dcu0000_20190822.csv", function(error, data) {
 
   // format the data
   data.forEach(function(d) {
-    d.sales = +d.sales;
+    d.ph_value = +d.ph_value;
   });
 
   // Scale the range of the data in the domains
