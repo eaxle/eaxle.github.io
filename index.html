@@ -22,7 +22,8 @@
     #cmd-body {
       opacity: 0.6;
       height: 500px;
-      overflow-y: scroll;
+      overflow: scroll;
+      overflow-x: hidden;
       color: #39FF14;
       background-color: black;
       /* text-shadow: #39FF14; */
@@ -189,6 +190,11 @@
 `
           break;
         }
+        case 'clear': {
+          $('.cmd-body-txt').remove();
+          msg = '';
+          break;
+        }
         default: {
 
           msg = '';
@@ -203,7 +209,9 @@
 `);
       // scroll page to the bottom.
       logger(JSON.stringify(getLastElement().scrollTop(getLastElement().scrollHeight)), 'pink')
-      getLastElement().scrollTop = getLastElement().scrollHeight;
+      $('#cmd-body').animate({
+        scrollTop:1000*$('.cmd-body-txt').length
+    }, 1000);
     }
     //function to emulate typing. for exaample blinking cursor and one alphabet .
     let animateType = () => {
