@@ -9,134 +9,246 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <title>Hello, world!</title>
   <style>
-    .cmd-body {
+    #cmd-head {
+      list-style-type: none;
+      background-color: black;
+      color: white;
+      /* opacity: 0.6; */
+    }
+
+    #cmd-body {
+      opacity: 0.6;
       height: 500px;
       overflow-y: scroll;
-      word-break: break-all;
+      color: #39FF14;
+      background-color: black;
+      /* text-shadow: #39FF14; */
     }
 
     body {
-      background-image: url("file:///C:/Users/Toshiba/Pictures/Screenshots/Screenshot%20(20).png");
-      /* background-image: url("https://wallpaperaccess.com/full/2587707.jpg"); */
-      /* background-size: cover; */
-      background-repeat: no-repeat;
+      background-image: url("https://cdn.wallpapersafari.com/8/86/LgV3Zd.png");
+      background-size: cover;
     }
 
-    input:focus {
-      outline: 0;
-      ;
-      cursor: default;
-      color: transparent;
-      user-select: none;
-      color: transparent;
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
     }
 
-    input::selection {
-      color: transparent;
-    }
-
-    input {
-      outline: 0;
-      cursor: default;
-      color: transparent;
-      user-select: none;
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
     }
   </style>
 </head>
 
 <body>
-  <div class="container d-flex flex-row justify-content-center m-t-5">
-    <div class="command  border w-50  mt-4 border border-dark" id="draggable" class="ui-widget-content">
-      <div class="cmd-top bg-white text-dark d-flex flex-row justify-content-between">
-        <div>
-          <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/command-prompt-1623634-1374962.png" width="30"
-            height="30" />
-          <small>C:\Windows\System32\cmd.exe</small>
 
-        </div>
-        <div class="col-sm-2 d-flex flex-row justify-content-around align-items-center ">
-          <i class="fa fa-minus "></i>
+  <div class="col-sm-8 w-50 mt-2 m-auto" id="cmd">
+    <ul class="list-group d-flex flex-row justify-content-around " id="cmd-head">
+      <li>File</li>
+      <li>Eile</li>
+      <li>View</li>
+      <li>Search</li>
+      <li>Terminal</li>
+      <li>Help</li>
+    </ul>
 
-          <i class="fa fa-square bg-white border-1"></i>
-          <i class="fa fa-times "></i>
-
-        </div>
+    <div id="cmd-body" class=" p-2 ">
+      <div class="col-sm-12"><span style="color:red">kali@Kali:~$</span>
+        <span class="cmd-body-txt"> </span>
       </div>
-      <div class="cmd-body bg-dark text-white">
-        <p>Microsoft Windows [Version 10.0.19041.867] </br>
-          (c) 2020 Microsoft Corporation. All rights reserved.</p>
-        <div class="col-sm-12 cmd-line">
-          <div class="text_here col-sm-12">C:\Users\Toshiba>
-            
-            <span id="pointer">__</span>
-          </div>
-          <input class="border-0 bg-dark" type="text" spellcheck="false" oninput="displayType()" autofocus />
-        </div>
-        
-      </div>
+
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"></script>
-    <script>
-      $(".cmd-body").on('keyup', function (e) {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-          let el = $($(".text_here")[0]).clone()
-          el.appendTo(".cmd-line");
-          $('.cmd-body').animate({
-        scrollTop: eval($(el).offset().top )
-    }, 0);
-        }
-      });
-      $(function () {
-        $("#draggable").draggable();
-      });
-      (() => {
-        let div = document.createElement("div");
 
-      })();
-      function displayType() {
-        function callMe() {
-          alert('outside of input');
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    //modifying console.log so that it is easy to trace the console.
+    let logger = (msg, color) => {
+      console.log('%c' + msg, 'background: #222; color: ' + color)
+    }
+    //get last element for command
+    let getLastElement = () => {
+      let el = $('.cmd-body-txt');
+      el = el[el.length - 1];
+      return $(el);
+    }
+
+    //function to execute the command when the user types and press the 'enter' button
+    let executeCommand = (command) => {
+      if (command)
+        command = command.toLowerCase();
+      logger(command, 'green')
+      let msg = null;
+      switch (command) {
+        case 'education': {
+          msg = `<table>
+  <tr>
+    <th>Uni/College</th>
+    <th>From-To</th>
+    <th>Degree</th>
+  </tr>
+  <tr>
+    <td>Swinburne University of Technology, Melbourne, Australia</td>
+    <td>2018-2019</td>
+    <td>Masters of Information Technology (Data analytics)</td>
+  </tr>
+  <tr>
+    <td>Amrit Science Campus, Kathmandu, Nepal</td>
+    <td>2010-2014</td>
+    <td>Bachelors of Science - Computer Science and Information Technology</td>
+  </tr>
+  
+</table>
+`
+          break;
         }
-        let x = document.getElementsByTagName("input")[0].value;
-        console.log(x);
-        let i = document.getElementsByClassName("text_here").length - 1
-        document.getElementsByClassName("text_here")[i].innerHTML = x;
+        case 'skills': {
+          console.log('skills')
+          msg = `<table>
+  <tr>
+    <th>Language</th>
+    <th>Level of expertise (1-10)</th>
+    <th>Experience</th>
+  </tr>
+  <tr>
+    <td>React</td>
+    <td>8</td>
+    <td>1 year</td>
+  </tr>
+  <tr>
+    <td>Angular</td>
+    <td>8</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>JavaScript</td>
+    <td>8</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>CSS</td>
+    <td>6</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>Java</td>
+    <td>5</td>
+    <td>1</td>
+  </tr>
+</table>
+`
+          break;
+        }
+        case 'experience': {
+          console.log('experience')
+          msg = `<table>
+  <tr>
+    <th>Company</th>
+    <th>From -To</th>
+    <th>Role</th>
+  </tr>
+  <tr>
+    <td>Itrazotracetech, Melbourne, Australia</td>
+    <td>May 2020-November 2020</td>
+    <td>ReactJs and React Native Developer</td>
+  </tr>
+  <tr>
+    <td>Zodicom, Melbourne, Australia</td>
+    <td>August 2019-November 2019</td>
+    <td>Full-stact developer (college project)</td>
+  </tr>
+  <tr>
+    <td>Guided App, Melbourne, Australia</td>
+    <td>May 2018- February 2019</td>
+    <td>ReactJs Developer</td>
+  </tr>
+  <tr>
+    <td>SuvidhaTech, Kathmandu, Nepal</td>
+    <td>April 2017- January 2018</td>
+    <td>Angular Developer</td>
+  </tr>
+  <tr>
+    <td>ZurelSoft, Kathmandu, Nepal</td>
+    <td>July 2015- March 2017</td>
+    <td>Angular Developer</td>
+  </tr>
+</table>
+`
+          break;
+        }
+        default: {
+
+          msg = '';
+          console.log("default");
+        }
       }
-      let tex = "Hello World! My name is Ramesh Khadka. Welcome to my World!";
-      tex = tex.split("");
-      let count = 0;
-      console.log(tex);
-      (() => {
-        setInterval(() => {
+      if (msg.length > 0)
+        getLastElement().html(msg);
+      $('#cmd-body').append(`<div class="col-sm-12"><span style="color:red">kali@Kali:~$</span>
+        <span class="cmd-body-txt"></span>
+      </div>
+`);
+      // scroll page to the bottom.
+      logger(JSON.stringify(getLastElement().scrollTop(getLastElement().scrollHeight)), 'pink')
+      getLastElement().scrollTop = getLastElement().scrollHeight;
+    }
+    //function to emulate typing. for exaample blinking cursor and one alphabet .
+    let animateType = () => {
+      let message = `Hello, world! My name is Ramesh Khadka. I am a JavaScript Developer. Welcome to my world.
+         Please type and enter any one of the commands to see the result.This project can be viewed in https://github.com/eaxle/eaxle.github.io/blob/master/index.html.`;
+      message = message.split('');
+      let i = 0;
+      let interval = setInterval(() => {
+        if (i < message.length) {
+          getLastElement().html(getLastElement().html() + message[i]);
+          i++;
+        }
+        else {
+          executeCommand();
+          clearInterval(interval);
+          $('body').bind('keydown', (event) => {
+            callMe(event);
+          })
+        }
+      }, 40)
+    }
+    $(document).ready(animateType());
+    let callMe = (e) => {
+      switch (e.keyCode) {
+        case 13: {
+          executeCommand(getLastElement().html());
+          break;
+        }
+        case 8 || 46: {
+          console.log('inside backspace');
+          let str = getLastElement().html().split('');
+          str.pop();
+          getLastElement().html(str.join(''));
+          break;
+        }
+        default: {
+          if (e.keyCode >= 65 && e.keyCode <= 90)
+            getLastElement().html(getLastElement().html() + e.key)
+          console.log(e.key);
+          break;
+        }
+      }
+    }
 
-          if (document.getElementById('pointer').innerText == "__")
-            document.getElementById('pointer').innerText = "";
-          else
-            document.getElementById('pointer').innerText = "__"
-        }, 300)
-        setInterval(() => {
-          if (tex[count] != undefined) {
-            let i = document.getElementsByClassName("text_here").length - 1
-            document.getElementsByClassName('text_here')[i].innerHTML += tex[count]
-            count += 1;
-          }
-
-        }, 10)
-      })();
-      $('input,textarea').bind('cut copy paste', function (e) {
-        e.preventDefault(); //disable cut,copy,paste
-      });
-      
-    </script>
+  </script>
 </body>
 
 </html>
