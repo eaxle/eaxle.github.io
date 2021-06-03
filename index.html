@@ -73,8 +73,8 @@
 
       </ul>
     </div>
-    <div id="cmd-body" >
-      <div class="col-sm-12"><span style="color:rgb(253, 71, 71)">kali@Kali:~$</span>
+    <div id="cmd-body">
+      <div class="col-sm-12"><span style="color:rgb(253, 71, 71)">root@kaliLinux:~$</span>
         <span class="cmd-body-txt"> </span>
       </div>
 
@@ -87,11 +87,14 @@
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/string-similarity@4.0.4/umd/string-similarity.min.js"></script>
   <script>
+
     //modifying console.log so that it is easy to trace the console.
     let logger = (msg, color) => {
       console.log('%c' + msg, 'background: #222; color: ' + color)
     }
+
     //get last element for command
     let getLastElement = () => {
       let el = $('.cmd-body-txt');
@@ -106,6 +109,69 @@
       logger(command, 'green')
       let msg = null;
       switch (command) {
+        case 'profile': {
+          msg = `I am a software developer with 3+ years of experience. 
+          I have worked as a front-end and back-end developer.
+           My noteworthy achievement is working as a team leader in one of my previous jobs.
+<form>
+  <div class="form-group row bg-secondary">
+    <div  class="col-sm-3">Phone:</div>
+    <div class="col-sm-9">
+      +61450902056
+    </div>
+  </div>
+  <div class="form-group row bg-secondary mt-1">
+    <div  class="col-sm-3">Email:</div>
+    <div class="col-sm-9">
+      eaxle07@gmail.com
+    </div>
+  </div>
+  <div class="form-group row bg-secondary mt-1">
+    <div  class="col-sm-3">LinkedIn:</div>
+    <div class="col-sm-9">
+      https://www.linkedin.com/in/ramesh-khadka-142772b4/
+    </div>
+  </div>
+  <div class="form-group row bg-secondary mt-1">
+    <div  class="col-sm-3">StackOverflow:</div>
+    <div class="col-sm-9">
+      https://stackoverflow.com/users/4599788/ramesh-khadka
+    </div>
+  </div>
+</form>
+`
+
+          break
+        }
+        case 'ls': {
+          msg = `<table>
+  <tr>
+    <th>Command</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>profile</td>
+    <td>shows my profile, contact information, visa status and reference(s)</td>
+  </tr>
+  <tr>
+    <td>education / educations</td>
+    <td>shows my education level</td>
+  </tr>
+  <tr>
+    <td>skill / skills</td>
+    <td>shows my skill level</td>
+  </tr>
+  <tr>
+    <td>experience / experiences</td>
+    <td>shows my experience in IT industry</td>
+  </tr>
+  <tr>
+    <td>clear / cls</td>
+    <td>clears the screen</td>
+  </tr>
+</table>`
+          break
+        }
         case 'education':
         case 'educations': {
           msg = `<table>
@@ -219,7 +285,7 @@
       }
       if (msg.length > 0)
         getLastElement().html(msg);
-      $('#cmd-body').append(`<div class="col-sm-12"><span style="color:rgb(253, 71, 71)">kali@Kali:~$</span>
+      $('#cmd-body').append(`<div class="col-sm-12"><span style="color:rgb(253, 71, 71)">root@kaliLinux:~$</span>
         <span class="cmd-body-txt"></span>
       </div>
 `);
@@ -231,8 +297,7 @@
     }
     //function to emulate typing. for exaample blinking cursor and one alphabet .
     let animateType = () => {
-      let message = `Hello, world! My name is Ramesh Khadka. I am a JavaScript Developer. Welcome to my world.
-         Please type and enter any one of the commands to see the result.This project can be viewed in https://github.com/eaxle/eaxle.github.io/blob/master/index.html.`;
+      let message = `Hello, world! My name is Ramesh Khadka. I am a software developer. Welcome to my world. Please type 'ls' and press enter to list all the available commands. Please visit "https://github.com/eaxle/eaxle.github.io/blob/master/index.html" to access this project. Happy hacking.`;
       message = message.split('');
       let i = 0;
       let interval = setInterval(() => {
