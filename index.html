@@ -87,7 +87,8 @@
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/string-similarity@4.0.4/umd/string-similarity.min.js"></script>
+  <!-- TODO: check mispelled commands -->
+    <script src="https://unpkg.com/string-similarity@4.0.4/umd/string-similarity.min.js"></script>
   <script>
 
     //modifying console.log so that it is easy to trace the console.
@@ -278,9 +279,12 @@
           break;
         }
         default: {
-
+          // to check if mispelled command
+          if(command){
+            msg=`Command not found. Please type 'ls' to list all the available commands. `
+          }
+          else
           msg = '';
-          console.log("default");
         }
       }
       if (msg.length > 0)
