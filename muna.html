@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            border: 1px dashed black;
+            padding: 2px;
+            width: 80%;
+            height: 80%;
+
+        }
+
+        img {
+            width: 95%;
+            max-height: 95%;
+            border-radius: 20px;
+            object-fit: contain;
+        }
+
+        .img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 2px solid brown; */
+            flex: 0.8;
+            text-align: center;
+            padding: 0;
+            align-content: center;
+        }
+
+        .article {
+            /* border: 3px solid green; */
+            flex: 0.5;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            /* border: 3px solid blue; */
+            max-height: 100%;
+
+
+        }
+
+        @media (max-width:1094px) {
+            .main {
+                flex-direction: column;
+                border: 0;
+            }
+
+        }
+
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .label {
+            font-weight: bolder;
+            color: orangered;
+        }
+
+        .button {
+            font-weight: bolder;
+            font-size: 1.2rem;
+            color: azure;
+            background-color: orangered;
+            border: 0;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .article h1 {
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        label {
+            margin-bottom: 4px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <div class="img">
+            <img src="../Desktop/Untitled.png" alt="image here" />
+        </div>
+
+        <article class="article">
+            <div>
+                <h1>About Muna Rokhaha</h1>
+                <p>
+                    Three years of proven experience in accounts receivable, payable, payroll, NT Payroll Tax, IAS and
+                    BAS
+                    Almost four years of experience as a Project Administrator and managed different contracts related
+                    to the Northern Territory Government including contracts for the Department of Infrastructure
+                    Logistics and Planning(DIPL) and the Department of Housing.
+                </p>
+            </div>
+            <section>
+                <button class="button">CONTACT</button>
+
+                <label><span class="label">Phone:</span><span> (+61)0410127433</span></label>
+                <!-- <label><span class="label">Address:</span><span> Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                    </span></label> -->
+                <label><span class="label">Mail:</span><span> munu1193@gmail.com</span></label>
+                <label><span class="label">linkedIn:</span><a
+                        href="https://www.linkedin.com/in/muna-rokaha-asa-b89455123/">
+                        https://www.linkedin.com/in/muna-rokaha-asa-b89455123/</span></a>
+
+                </label>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
